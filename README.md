@@ -35,3 +35,5 @@ item_data = maxsold.get_item(auction_item_id)
 #let's get item data specific to bidding
 bidding_data = maxsold.get_bidding(item_data)
 ```
+# 🤝 Discussion
+Currently, only live data is supported by the wrapper - however historical data is available via the APIs and will be integrated into the wrapper in future. 
