@@ -19,7 +19,7 @@ class API():
             tokens[token] = response.text[start:end]
         self.api_key = tokens['algoliaSearchAPIKey']
         self.app_id = tokens['algoliaApplicationId']
-    def set_tokens_manually(self, api_key, app_id):
+    def set_tokens(self, api_key, app_id):
         self.api_key = api_key
         self.app_id = app_id
         if self.test_search().status_code == 200:
@@ -105,29 +105,3 @@ class API():
         bids_per_day = number_of_bids / bidding_time_days
         return {'title': title, 'description': description, 'starting_bid': starting_bid, 'current_bid': current_bid, 'minimum_bid': minimum_bid, 'bidding_data': bidding_data, 
         'bidding_plt': plt, 'number_of_bids': number_of_bids, 'bidding_time_days': bidding_time_days, 'bids_per_day': bids_per_day}
-
-
-
-
-#create an instance of the API Class
-maxsold = API()
-#generate tokens, can also be set manually with: maxsold.set_tokens()
-maxsold.generate_tokens() #print(maxsold.api_key, maxsold.app_id)
-#search for auctions, not using any arguments (search filtuers) will return the most results
-auctions = maxsold.search()
-#let's narrow these results down for demonstration. we'll search for Estate, put our longitude/latitude string, and look at the first page (pages use 0 indexing)
-auctions = maxsold.search(query='Estate', location='42.3144556, -71.0403236', country=False, page=0)
-#now lets search for items, the same parameters apply for searching for a list of auctions, or a list of items. we set search_type to 'items', from the default 'auctions'
-items = maxsold.search(search_type='items', query='Car')
-#let's get 1) the id of the first auction, 2) the id of the first item from the list of items
-auction_id = auctions['hits'][0]['am_auction_id']
-item_id = items['hits'][0]['objectID']
-#we can also get a list of items from a specific auction (auction items)
-auction_items = maxsold.get_auction_items(auction_id)
-#let's get the first item id from that auction
-auction_item_id = auction_items['items'][0]['id']
-#let's get the item data
-item_data = maxsold.get_item(auction_item_id)
-#let's get item data specific to bidding
-bidding_data = maxsold.get_bidding(item_data)
-print('done')
