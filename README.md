@@ -1,5 +1,5 @@
 # maxbought-api
-Python API wrapper and documentation for MaxSold's hidden APIs. MaxSold is a recently funded Series-B startup solving the challenge of selling large amounts of personal belongings. What used to be a slow and unenjoyable experience is now easy and fun, for all parties involved.
+Python API wrapper and documentation for MaxSold's hidden APIs. MaxSold is a Series-B startup solving the challenge of selling large amounts of personal belongings. What used to be a slow and unenjoyable experience is now easy and fun, for all parties involved.
 This package will you give you the power to:
 1) Autogenerate API credentials
 2) Get auctions data
